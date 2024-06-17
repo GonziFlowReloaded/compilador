@@ -8,9 +8,6 @@ class ASTNode:
         self.children = []
 
 def parse(tokens):
-<<<<<<< HEAD
-    # Función principal de análisis sintáctico que convierte una lista de tokens en un AST.
-=======
     def parse_instructions(index):
         instructions = []
         while index < len(tokens) and tokens[index][0] != 'END':
@@ -30,7 +27,6 @@ def parse(tokens):
         node.children.append(expr_node)
         return node, index
 
->>>>>>> gonsiflow
     def parse_expression(index):
         # Comienza el análisis sintáctico de una expresión.
         return parse_add_sub(index)
@@ -73,14 +69,7 @@ def parse(tokens):
         else:
             raise ValueError(f"Unexpected token: {tokens[index]}")
 
-<<<<<<< HEAD
-    # Inicia el análisis sintáctico desde el primer token.
-    ast, index = parse_expression(0)
-    
-    # Verifica si hay tokens adicionales inesperados después del análisis completo.
-=======
     ast, index = parse_instructions(0)
->>>>>>> gonsiflow
     if index < len(tokens) - 1:
         raise ValueError("Unexpected tokens at the end")
     

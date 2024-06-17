@@ -22,33 +22,6 @@ def compile(code):
     
     # Análisis Sintáctico: Convierte la lista de tokens en un árbol de sintaxis abstracta (AST).
     ast = parse(tokens)
-<<<<<<< HEAD
-    
-    # Análisis Semántico: Verifica la validez del AST desde el punto de vista semántico.
-    analyze(ast)
-    
-    # Generación de Código Intermedio: Genera una representación intermedia del código.
-    intermediate_code, result = generate_intermediate_code(ast)
-    
-    # Optimización: Optimiza el código intermedio para mejorar su eficiencia.
-    optimized_code = optimize(intermediate_code)
-    
-    # Generación de Código Final: Genera el código final a partir del código intermedio optimizado.
-    final_code = generate_final_code_with_printear(optimized_code, ast)
-    
-    # La función `compile` devuelve el código final generado.
-    return final_code
-
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Se define una cadena de código de ejemplo.
-    code = "PRINTEAR 3 + 5 * (2 - 8)'"
-    
-    # Se compila el código de ejemplo utilizando la función `compile`.
-    compiled_code = compile(code)
-    
-    # El código compilado se convierte en una cadena para su visualización.
-=======
     for node in ast:
         analyze(node)
     intermediate_code = []
@@ -63,7 +36,6 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     code = 'PRINTEAR "El resultado de la operación es:" 10 / (2 + 5)\''
     compiled_code, optimizado, intermedio = compile(code)
->>>>>>> gonsiflow
     compiled_code_str = "\n".join(compiled_code)
     
     # Se imprime el código final generado.

@@ -5,17 +5,6 @@ import re
 # - Un tipo de token (como "NUM" para números, "PLUS" para el símbolo '+', etc.).
 # - Una expresión regular que define el patrón de ese token.
 TOKENS = [
-<<<<<<< HEAD
-    ("NUM", r"\d+"),            # Números
-    ("PLUS", r"\+"),            # Símbolo '+'
-    ("MINUS", r"-"),            # Símbolo '-'
-    ("MULT", r"\*"),            # Símbolo '*'
-    ("DIV", r"/"),              # Símbolo '/'
-    ("LPAREN", r"\("),          # Paréntesis izquierdo '('
-    ("RPAREN", r"\)"),          # Paréntesis derecho ')'
-    ("PRINTEAR", r"PRINTEAR"),  # Palabra clave 'PRINTEAR'
-    ("END", r"\'")              # Símbolo de fin '\''
-=======
     ("NUM", r"\d+"),
     ("PLUS", r"\+"),
     ("MINUS", r"-"),
@@ -26,7 +15,6 @@ TOKENS = [
     ("PRINTEAR", r"PRINTEAR"),
     ("STRING", r'"[^"]*"'),  # Nueva expresión regular para strings
     ("END", r"\'")
->>>>>>> gonsiflow
 ]
 
 def tokenize(code):
