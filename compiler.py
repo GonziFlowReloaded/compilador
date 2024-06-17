@@ -16,14 +16,15 @@ def compile(code):
         intermediate_code.extend(intermediate_part)
     optimized_code = optimize(intermediate_code)
     final_code = generate_final_code(ast)
-    return final_code
+    return final_code, optimized_code, intermediate_code
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    code = 'PRINTEAR "Me pican los cocos: " PRINTEAR 3 + 5 * (2 - 8)\''
-    compiled_code = compile(code)
+    code = 'PRINTEAR "El resultado de la operación es:" 10 / (2 + 5)\''
+    compiled_code, optimizado, intermedio = compile(code)
     compiled_code_str = "\n".join(compiled_code)
     print("Código generado:")
     print(compiled_code_str)
     print("\nResultado de la ejecución:")
     exec(compiled_code_str)
+
