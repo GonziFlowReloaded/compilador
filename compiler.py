@@ -12,7 +12,7 @@ from sintactico import parse
 from semantico import analyze
 from intermedio_code import generate_intermediate_code
 from optimizer import optimize
-from final_code import generate_final_code_with_printear
+from final_code import generate_final_code
 
 # Función Principal del Compilador
 
@@ -22,6 +22,7 @@ def compile(code):
     
     # Análisis Sintáctico: Convierte la lista de tokens en un árbol de sintaxis abstracta (AST).
     ast = parse(tokens)
+<<<<<<< HEAD
     
     # Análisis Semántico: Verifica la validez del AST desde el punto de vista semántico.
     analyze(ast)
@@ -47,6 +48,22 @@ if __name__ == "__main__":
     compiled_code = compile(code)
     
     # El código compilado se convierte en una cadena para su visualización.
+=======
+    for node in ast:
+        analyze(node)
+    intermediate_code = []
+    for node in ast:
+        intermediate_part, _ = generate_intermediate_code(node)
+        intermediate_code.extend(intermediate_part)
+    optimized_code = optimize(intermediate_code)
+    final_code = generate_final_code(ast)
+    return final_code, optimized_code, intermediate_code
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    code = 'PRINTEAR "El resultado de la operación es:" 10 / (2 + 5)\''
+    compiled_code, optimizado, intermedio = compile(code)
+>>>>>>> gonsiflow
     compiled_code_str = "\n".join(compiled_code)
     
     # Se imprime el código final generado.
@@ -56,3 +73,4 @@ if __name__ == "__main__":
     # Se ejecuta el código final compilado.
     print("\nResultado de la ejecución:")
     exec(compiled_code_str)
+

@@ -8,7 +8,29 @@ class ASTNode:
         self.children = []
 
 def parse(tokens):
+<<<<<<< HEAD
     # Función principal de análisis sintáctico que convierte una lista de tokens en un AST.
+=======
+    def parse_instructions(index):
+        instructions = []
+        while index < len(tokens) and tokens[index][0] != 'END':
+            if tokens[index][0] == 'PRINTEAR':
+                node, index = parse_printear(index)
+            else:
+                node, index = parse_expression(index)
+            instructions.append(node)
+        return instructions, index
+
+    def parse_printear(index):
+        node = ASTNode('PRINTEAR')
+        if tokens[index + 1][0] == 'STRING':
+            expr_node, index = parse_primary(index + 1)
+        else:
+            expr_node, index = parse_expression(index + 1)
+        node.children.append(expr_node)
+        return node, index
+
+>>>>>>> gonsiflow
     def parse_expression(index):
         # Comienza el análisis sintáctico de una expresión.
         return parse_add_sub(index)
@@ -40,23 +62,25 @@ def parse(tokens):
         if tokens[index][0] == 'NUM':
             node = ASTNode('NUM', tokens[index][1])
             return node, index + 1
+        elif tokens[index][0] == 'STRING':
+            node = ASTNode('STRING', tokens[index][1])
+            return node, index + 1
         elif tokens[index][0] == 'LPAREN':
             node, index = parse_expression(index + 1)
             if tokens[index][0] != 'RPAREN':
                 raise ValueError("Expected ')'")
             return node, index + 1
-        elif tokens[index][0] == 'PRINTEAR':
-            node = ASTNode('PRINTEAR')
-            expr_node, index = parse_expression(index + 1)
-            node.children.append(expr_node)
-            return node, index
         else:
             raise ValueError(f"Unexpected token: {tokens[index]}")
 
+<<<<<<< HEAD
     # Inicia el análisis sintáctico desde el primer token.
     ast, index = parse_expression(0)
     
     # Verifica si hay tokens adicionales inesperados después del análisis completo.
+=======
+    ast, index = parse_instructions(0)
+>>>>>>> gonsiflow
     if index < len(tokens) - 1:
         raise ValueError("Unexpected tokens at the end")
     
