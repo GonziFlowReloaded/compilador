@@ -5,6 +5,25 @@ class ASTNode:
         self.children = []
 
 def parse(tokens):
+    def parse_instructions(index):
+        instructions = []
+        while index < len(tokens) and tokens[index][0] != 'END':
+            if tokens[index][0] == 'PRINTEAR':
+                node, index = parse_printear(index)
+            else:
+                node, index = parse_expression(index)
+            instructions.append(node)
+        return instructions, index
+
+    def parse_printear(index):
+        node = ASTNode('PRINTEAR')
+        if tokens[index + 1][0] == 'STRING':
+            expr_node, index = parse_primary(index + 1)
+        else:
+            expr_node, index = parse_expression(index + 1)
+        node.children.append(expr_node)
+        return node, index
+
     def parse_expression(index):
         return parse_add_sub(index)
 
@@ -32,20 +51,18 @@ def parse(tokens):
         if tokens[index][0] == 'NUM':
             node = ASTNode('NUM', tokens[index][1])
             return node, index + 1
+        elif tokens[index][0] == 'STRING':
+            node = ASTNode('STRING', tokens[index][1])
+            return node, index + 1
         elif tokens[index][0] == 'LPAREN':
             node, index = parse_expression(index + 1)
             if tokens[index][0] != 'RPAREN':
                 raise ValueError("Expected ')'")
             return node, index + 1
-        elif tokens[index][0] == 'PRINTEAR':
-            node = ASTNode('PRINTEAR')
-            expr_node, index = parse_expression(index + 1)
-            node.children.append(expr_node)
-            return node, index
         else:
             raise ValueError(f"Unexpected token: {tokens[index]}")
 
-    ast, index = parse_expression(0)
+    ast, index = parse_instructions(0)
     if index < len(tokens) - 1:
         raise ValueError("Unexpected tokens at the end")
     return ast

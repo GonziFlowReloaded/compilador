@@ -10,6 +10,7 @@ TOKENS = [
     ("LPAREN", r"\("),
     ("RPAREN", r"\)"),
     ("PRINTEAR", r"PRINTEAR"),
+    ("STRING", r'"[^"]*"'),  # Nueva expresión regular para strings
     ("END", r"\'")
 ]
 
