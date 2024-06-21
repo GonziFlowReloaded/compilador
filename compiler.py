@@ -13,7 +13,8 @@ from semantico import analyze
 from intermedio_code import generate_intermediate_code
 from optimizer import optimize
 from final_code import generate_final_code
-
+from generate_exe import generate_exe
+from milf_reader import milf_reader
 # Función Principal del Compilador
 
 def compile(code):
@@ -34,13 +35,17 @@ def compile(code):
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    code = 'PRINTEAR "El resultado de la operación es:" 10 / (2 + 5)\''
+    code = 'PRINTEAR "El resultado de la operación es:" 10 / (2 + 5) 5 + 3 * 2\''
+    code = milf_reader("codigo.milf")
     compiled_code, optimizado, intermedio = compile(code)
     compiled_code_str = "\n".join(compiled_code)
     
     # Se imprime el código final generado.
     print("Código generado:")
     print(compiled_code_str)
+    
+    generate_exe(compiled_code_str)
+
     
     # Se ejecuta el código final compilado.
     print("\nResultado de la ejecución:")
