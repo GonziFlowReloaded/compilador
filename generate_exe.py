@@ -8,7 +8,7 @@ import subprocess
 
 
 def generate_exe(python_code):
-    archivo_a_compilar = 'archivo_a_compilar.py'
+    archivo_a_compilar = 'archivo_compilado.py'
     comando = f'pyinstaller --onefile {archivo_a_compilar}'
     # Agregar este comando a python_code input("Presiona cualquier tecla para cerrar...")
 
